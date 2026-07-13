@@ -26,14 +26,14 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- Remplace par un vrai hash via password_hash() côté PHP avant usage réel.
 -- ============================================================
 INSERT INTO `utilisateurs` (`id`, `nom`, `password`, `role`, `created_at`) VALUES
-(1, 'Jean Rakoto', '$2y$10$Q7bJ9k1E3nQ6h0v3ZzM6Ke1nX0y4wq3h1jv7QO0mYVh3fSkzq0f2G', 'agent', '2026-05-20 08:00:00'),
-(2, 'Marie Rasoa', '$2y$10$Q7bJ9k1E3nQ6h0v3ZzM6Ke1nX0y4wq3h1jv7QO0mYVh3fSkzq0f2G', 'agent', '2026-05-20 08:05:00'),
-(3, 'Tovo Andriamampianina', '$2y$10$Q7bJ9k1E3nQ6h0v3ZzM6Ke1nX0y4wq3h1jv7QO0mYVh3fSkzq0f2G', 'agent', '2026-05-21 09:00:00'),
-(4, 'Hery Razafindrakoto', '$2y$10$Q7bJ9k1E3nQ6h0v3ZzM6Ke1nX0y4wq3h1jv7QO0mYVh3fSkzq0f2G', 'agent', '2026-05-21 09:15:00'),
-(5, 'Nirina Rabemananjara', '$2y$10$Q7bJ9k1E3nQ6h0v3ZzM6Ke1nX0y4wq3h1jv7QO0mYVh3fSkzq0f2G', 'agent', '2026-05-22 07:30:00'),
-(6, 'Fanja Rakotonirina', '$2y$10$Q7bJ9k1E3nQ6h0v3ZzM6Ke1nX0y4wq3h1jv7QO0mYVh3fSkzq0f2G', 'agent', '2026-05-22 07:45:00'),
-(7, 'Solofo Randriamanantena', '$2y$10$Q7bJ9k1E3nQ6h0v3ZzM6Ke1nX0y4wq3h1jv7QO0mYVh3fSkzq0f2G', 'responsable', '2026-05-15 08:00:00'),
-(8, 'Lalao Ravelojaona', '$2y$10$Q7bJ9k1E3nQ6h0v3ZzM6Ke1nX0y4wq3h1jv7QO0mYVh3fSkzq0f2G', 'responsable', '2026-05-15 08:10:00');
+(1, 'Jean Rakoto', '$2b$12$WzMkTpgocgFXgmD9q49BHeIc3J.Qt1ZnWXMFScXO8OMZF2Rz6AeUe', 'agent', '2026-05-20 08:00:00'),
+(2, 'Marie Rasoa', '$2b$12$WzMkTpgocgFXgmD9q49BHeIc3J.Qt1ZnWXMFScXO8OMZF2Rz6AeUe', 'agent', '2026-05-20 08:05:00'),
+(3, 'Tovo Andriamampianina', '$2b$12$WzMkTpgocgFXgmD9q49BHeIc3J.Qt1ZnWXMFScXO8OMZF2Rz6AeUe', 'agent', '2026-05-21 09:00:00'),
+(4, 'Hery Razafindrakoto', '$2b$12$WzMkTpgocgFXgmD9q49BHeIc3J.Qt1ZnWXMFScXO8OMZF2Rz6AeUe', 'agent', '2026-05-21 09:15:00'),
+(5, 'Nirina Rabemananjara', '$2b$12$WzMkTpgocgFXgmD9q49BHeIc3J.Qt1ZnWXMFScXO8OMZF2Rz6AeUe', 'agent', '2026-05-22 07:30:00'),
+(6, 'Fanja Rakotonirina', '$2b$12$WzMkTpgocgFXgmD9q49BHeIc3J.Qt1ZnWXMFScXO8OMZF2Rz6AeUe', 'agent', '2026-05-22 07:45:00'),
+(7, 'Solofo Randriamanantena', '$2b$12$WzMkTpgocgFXgmD9q49BHeIc3J.Qt1ZnWXMFScXO8OMZF2Rz6AeUe', 'responsable', '2026-05-15 08:00:00'),
+(8, 'Lalao Ravelojaona', '$2b$12$WzMkTpgocgFXgmD9q49BHeIc3J.Qt1ZnWXMFScXO8OMZF2Rz6AeUe', 'responsable', '2026-05-15 08:10:00');
 
 -- ============================================================
 -- aires_protegees
