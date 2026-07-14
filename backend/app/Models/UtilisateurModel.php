@@ -46,6 +46,6 @@ class UtilisateurModel extends Model
 
     public function getAgentsTerrain()
     {
-        return $this->where('role', 'agentTerrain')->findAll();
+        return $this->where('role', 'agent')->findAll();
     }
 }

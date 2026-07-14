@@ -16,6 +16,7 @@ $routes->delete('utilisateurs/(:num)', 'UtilisateurController::delete/$1');
 $routes->get('aires-protegees', 'AireProtegeeController::index');
 $routes->get('aires-protegees/(:num)', 'AireProtegeeController::show/$1');
 $routes->get('aires-protegees/(:num)/stats', 'AireProtegeeController::stats/$1');
+$routes->get('aires-protegees/(:num)/tarifs', 'AireProtegeeController::getTarifs/$1');
 $routes->get('aires-protegees/(:num)/visites', 'VisiteController::parAire/$1');
 $routes->post('aires-protegees', 'AireProtegeeController::create');
 $routes->match(['put', 'patch'], 'aires-protegees/(:num)', 'AireProtegeeController::update/$1');

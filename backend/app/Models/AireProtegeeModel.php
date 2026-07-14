@@ -30,4 +30,11 @@ class AireProtegeeModel extends Model
                     ->groupBy('aires_protegees.id')
                     ->first();
     }
+
+    public function requestTarifs(int $aireId)
+    {
+        return $this->select('aires_protegees.tarif_ticket, aires_protegees.tarif_guide')
+                    ->where('aires_protegees.id', $aireId)
+                    ->findAll();
+    }
 }

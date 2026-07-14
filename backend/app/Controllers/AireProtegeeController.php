@@ -125,4 +125,19 @@ class AireProtegeeController extends BaseController
             'data'   => $aire,
         ]);
     }
+    public function getTarifs($id = null)
+    {
+        $tarifs = $this->aireModel->requestTarifs($id);
+
+        if (! $tarifs) {
+            return $this->response->setStatusCode(404)->setJSON([
+                'status'  => 'error',
+                'message' => 'Tarifs aire protégée introuvable.',
+            ]);
+        }
+        return $this->response->setJSON([
+            'status' => 'success',
+            'data'   => $tarifs,
+        ]);
+    }
 }
