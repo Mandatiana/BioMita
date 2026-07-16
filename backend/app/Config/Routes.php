@@ -53,3 +53,10 @@ $routes->get('incidents/(:num)', 'IncidentController::show/$1');
 $routes->post('incidents', 'IncidentController::create');
 $routes->match(['put', 'patch'], 'incidents/(:num)', 'IncidentController::update/$1');
 $routes->delete('incidents/(:num)', 'IncidentController::delete/$1');
+
+// Route générique pour intercepter les requêtes preflight OPTIONS envoyées par le
+// navigateur avant chaque requête cross-origin (POST/PUT/PATCH/DELETE). Sans ça,
+// CodeIgniter renvoie 404 sur OPTIONS avant que le filtre 'cors' ajoute ses headers.
+$routes->options('(:any)', static function () {
+    return service('response')->setStatusCode(204);
+});
