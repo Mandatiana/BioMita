@@ -17,43 +17,42 @@ export function ProtectedAreas() {
 
 
 // les types itambbaran admin sy agents
-export type Visit = {
-  id: number;
-  time: string;
-  rep: string;
-  nat: string;
-  area: string;
-  n: number;
-  amount: number;
+export type Visite = {
+  id: number,
+  time: string,
+  representant_nom: string,
+  nationalite: string,
+  aire_nom: string;
+  nombre_visiteurs: number,
+  montant_total: number,
 }
 
 export type IncidentStatus = "Déclaré" | "En cours" | "Résolu";
 export type IncidentUrgence = "Faible" | "Moyen" | "Élevé";
 
 export type Incident = {
-  id: number;
-  type: string;
-  loc: string;
-  desc: string;
-  urgence: IncidentUrgence;
-  status: IncidentStatus;
+  id: number,
+  type: string,
+  loc: string,
+  desc: string,
+  urgence: IncidentUrgence,
+  status: IncidentStatus,
 };
 
-export type ProtectedArea = {
-  id: string;
-  name: string;
-  region: string;
-  ticket: number;
-  guide: number;
-  superficie: string;
+export type AireProtegee = {
+  id: string,
+  nom: string,
+  localisation: string,
+  tarif_ticket: string, // si decimal => string
+  tarif_guide: string,
 };
 
 
 export type Agent = {
   id: number;
-  name: string;
-  area: string;
-  visites: number;
-  obs: number;
-  incidents: number;
+  nom: string;
+  aire_nom: string;
+  total_visites: number;
+  total_observations: number;
+  total_incidents: number;
 };

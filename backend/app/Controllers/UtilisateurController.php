@@ -113,9 +113,12 @@ class UtilisateurController extends BaseController
     {
         $agents = $this->utilisateurModel->getAgentsTerrain();
 
-        return $this->response->setJSON([
-            'status' => 'success',
-            'data'   => $agents,
-        ]);
+        return $this->response->setJSON($agents);
+    }
+
+    public function infoAgents()
+    {
+        $agents = $this->utilisateurModel->getInfoAgents();
+        return $this->response->setJSON($agents);
     }
 }

@@ -1,9 +1,26 @@
+import { useEffect, useState } from "react";
 import { Card, CardContent } from "../components/ui/card";
-import { AGENTS } from "../data/MockData";
+import type { Agent } from "../types/objectTypes";
+
 
 
 //informations des agents employées par l admin du site touristique
 export default function Agents() {
+
+  const [agents, setAgents] = useState<Agent[]>([]);
+
+  useEffect(()=>{
+    async function getAgents(){
+      try{
+        const res = await fetch('http://localhost:8080/utilisateurs/agents-terrain-full');
+        const agents: Agent[] = await res.json();
+        setAgents(agents);
+      }
+      catch(error){console.error(error)}
+    }
+    getAgents();
+  });
+
   return (
     <div className="px-5 md:px-8">
       <div className="pt-6 md:pt-8 pb-5">
@@ -12,14 +29,14 @@ export default function Agents() {
       </div>
 
       <div className="grid sm:grid-cols-2 gap-4">
-        {AGENTS.map((a) => (
+        {agents.map((a) => (
           <Card key={a.id}>
             <CardContent>
-              <p className="font-medium text-stone-900">{a.name}</p>
-              <p className="text-xs text-stone-500">{a.area}</p>
+              <p className="font-medium text-stone-900">{a.nom}</p>
+              <p className="text-xs text-stone-500">{a.aire_nom}</p>
             </CardContent>
             <div className="grid grid-cols-3 border-t border-stone-100">
-              {([[a.visites, "Visites"], [a.obs, "Observ."], [a.incidents, "Incidents"]] as const).map(
+              {([[a.total_visites, "Visites"], [a.total_observations, "Observ."], [a.total_incidents, "Incidents"]] as const).map(
                 ([value, label]) => (
                   <div key={label} className="text-center py-3 border-r last:border-r-0 border-stone-100">
                     <p className="text-sm font-semibold text-stone-900">{value}</p>

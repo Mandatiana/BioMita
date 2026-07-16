@@ -1,8 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import './App.css'
-import Home from "./pages/Home";
-import Auth from "./pages/auth";
-
+import AdminLayout from './pages/admin/AdminLayout'
 function App() {
   // Fonction de connexion
   const handleLogin = () => {

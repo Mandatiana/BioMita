@@ -7,6 +7,7 @@ use CodeIgniter\Router\RouteCollection;
 // Utilisateurs
 $routes->get('utilisateurs', 'UtilisateurController::index');
 $routes->get('utilisateurs/agents-terrain', 'UtilisateurController::agentsTerrain');
+$routes->get('utilisateurs/agents-terrain-full', 'UtilisateurController::infoAgents');
 $routes->get('utilisateurs/(:num)', 'UtilisateurController::show/$1');
 $routes->post('utilisateurs', 'UtilisateurController::create');
 $routes->match(['put', 'patch'], 'utilisateurs/(:num)', 'UtilisateurController::update/$1');

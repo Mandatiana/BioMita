@@ -18,10 +18,7 @@ class AireProtegeeController extends BaseController
     {
         $aires = $this->aireModel->findAll();
 
-        return $this->response->setJSON([
-            'status' => 'success',
-            'data'   => $aires,
-        ]);
+        return $this->response->setJSON($aires);
     }
 
     // GET /aires-protegees/(:num)

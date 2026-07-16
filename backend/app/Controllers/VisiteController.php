@@ -18,10 +18,7 @@ class VisiteController extends BaseController
     {
         $visites = $this->visiteModel->getVisitesAvecDetails();
 
-        return $this->response->setJSON([
-            'status' => 'success',
-            'data'   => $visites,
-        ]);
+        return $this->response->setJSON($visites);
     }
 
     // GET /visites/(:num)

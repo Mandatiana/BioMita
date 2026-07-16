@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Search } from "lucide-react";
 import { Card } from "../../components/ui/card";
 import { Input } from "../../components/ui/input";
-import { AREAS, initialVisits, money } from "../../data/MockData";
+import type { Visite, AireProtegee } from "../../types/objectTypes";
 
 
 
@@ -11,12 +11,41 @@ import { AREAS, initialVisits, money } from "../../data/MockData";
 export default function Visitors() {
   const [query, setQuery] = useState<string>("");
   const [areaFilter, setAreaFilter] = useState<string>("Toutes");
-
-  const filtered = initialVisits.filter((v) => {
-    const matchesArea = areaFilter === "Toutes" || v.area === areaFilter;
-    const matchesQuery = v.rep.toLowerCase().includes(query.toLowerCase());
+  const [visites, setVisites] = useState<Visite[]>([]);
+  const [aires, setAires] = useState<AireProtegee[]>([]);
+  const filtered = visites.filter((v) => {
+    const matchesArea = areaFilter === "Toutes" || v.aire_nom === areaFilter;
+    const matchesQuery = v.representant_nom.toLowerCase().includes(query.toLowerCase());
     return matchesArea && matchesQuery;
   });
+
+  function money(nombre_visiteurs: number): string {
+    return nombre_visiteurs.toLocaleString("fr-FR") + " Ar";
+  }
+
+  useEffect(()=>{
+    async function getUsers() {
+      try{
+        const res = await fetch('http://localhost:8080/visites');
+        const visites: Visite[] = await res.json();
+        setVisites(visites);
+      }
+      catch(error){
+        console.error(error);
+      }
+    }
+    async function getAire() {
+      try{
+        const res = await fetch('http://localhost:8080/aires-protegees');
+        const aires: AireProtegee[] = await res.json();
+        setAires(aires);
+      }
+      catch(error){console.error(error);}
+    }
+
+    getUsers();
+    getAire();
+  }, []);
 
   return (
     <div className="px-5 md:px-8">
@@ -41,8 +70,8 @@ export default function Visitors() {
           className="rounded-xl border border-stone-300 bg-white px-3.5 py-2.5 text-sm"
         >
           <option>Toutes</option>
-          {AREAS.map((a) => (
-            <option key={a.id}>{a.name}</option>
+          {aires.map((a) => (
+            <option key={a.id}>{a.nom}</option>
           ))}
         </select>
       </div>
@@ -64,11 +93,11 @@ export default function Visitors() {
               {filtered.map((v) => (
                 <tr key={v.id} className="border-b border-stone-50 hover:bg-stone-50">
                   <td className="px-5 py-3 text-stone-500">{v.time}</td>
-                  <td className="px-5 py-3 text-stone-900 font-medium">{v.rep}</td>
-                  <td className="px-5 py-3 text-stone-600">{v.nat}</td>
-                  <td className="px-5 py-3 text-stone-600">{v.area}</td>
-                  <td className="px-5 py-3 text-stone-600">{v.n}</td>
-                  <td className="px-5 py-3 text-stone-900 text-right font-medium">{money(v.amount)}</td>
+                  <td className="px-5 py-3 text-stone-900 font-medium">{v.representant_nom}</td>
+                  <td className="px-5 py-3 text-stone-600">{v.nationalite}</td>
+                  <td className="px-5 py-3 text-stone-600">{v.aire_nom}</td>
+                  <td className="px-5 py-3 text-stone-600">{v.nombre_visiteurs}</td>
+                  <td className="px-5 py-3 text-stone-900 text-right font-medium">{money(v.montant_total)}</td>
                 </tr>
               ))}
             </tbody>

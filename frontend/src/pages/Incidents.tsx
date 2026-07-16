@@ -2,9 +2,11 @@ import { useState } from "react";
 import { Search } from "lucide-react";
 import { Card } from "../components/ui/card"
 import { Input } from "../components/ui/input";
-import { AREAS, initialVisits, money } from "../data/MockData";
+import { AREAS, initialVisits } from "../data/MockData";
 
-
+  function money(nombre_visiteurs: number): string {
+    return nombre_visiteurs.toLocaleString("fr-FR") + " Ar";
+  }
 //liste des incidents
 
 export default function Visitors() {
@@ -12,8 +14,8 @@ export default function Visitors() {
   const [areaFilter, setAreaFilter] = useState<string>("Toutes");
 
   const filtered = initialVisits.filter((v) => {
-    const matchesArea = areaFilter === "Toutes" || v.area === areaFilter;
-    const matchesQuery = v.rep.toLowerCase().includes(query.toLowerCase());
+    const matchesArea = areaFilter === "Toutes" || v.aire_nom === areaFilter;
+    const matchesQuery = v.representant_nom.toLowerCase().includes(query.toLowerCase());
     return matchesArea && matchesQuery;
   });
 
@@ -41,7 +43,7 @@ export default function Visitors() {
         >
           <option>Toutes</option>
           {AREAS.map((a) => (
-            <option key={a.id}>{a.name}</option>
+            <option key={a.id}>{a.nom}</option>
           ))}
         </select>
       </div>
@@ -63,11 +65,11 @@ export default function Visitors() {
               {filtered.map((v) => (
                 <tr key={v.id} className="border-b border-stone-50 hover:bg-stone-50">
                   <td className="px-5 py-3 text-stone-500">{v.time}</td>
-                  <td className="px-5 py-3 text-stone-900 font-medium">{v.rep}</td>
-                  <td className="px-5 py-3 text-stone-600">{v.nat}</td>
-                  <td className="px-5 py-3 text-stone-600">{v.area}</td>
-                  <td className="px-5 py-3 text-stone-600">{v.n}</td>
-                  <td className="px-5 py-3 text-stone-900 text-right font-medium">{money(v.amount)}</td>
+                  <td className="px-5 py-3 text-stone-900 font-medium">{v.representant_nom}</td>
+                  <td className="px-5 py-3 text-stone-600">{v.nationalite}</td>
+                  <td className="px-5 py-3 text-stone-600">{v.aire_nom}</td>
+                  <td className="px-5 py-3 text-stone-600">{v.nombre_visiteurs}</td>
+                  <td className="px-5 py-3 text-stone-900 text-right font-medium">{money(v.montant_total)}</td>
                 </tr>
               ))}
             </tbody>

@@ -1,6 +1,6 @@
 import { TrendingUp, TrendingDown } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "../../components/ui/card";
-import { initialVisits, initialIncidents, money } from "../../data/MockData";
+import { initialVisits, initialIncidents } from "../../data/MockData";
 
 type KpiCardProps = {
   label: string;
@@ -8,6 +8,9 @@ type KpiCardProps = {
   delta: string;
   up: boolean;
 };
+function money(nombre_visiteurs: number): string {
+  return nombre_visiteurs.toLocaleString("fr-FR") + " Ar";
+}
 
 function KpiCard({ label, value, delta, up }: KpiCardProps) {
   return (
@@ -26,8 +29,8 @@ function KpiCard({ label, value, delta, up }: KpiCardProps) {
 }
 
 export default function Dashboard() {
-  const totalVisitors = initialVisits.reduce((sum, v) => sum + v.n, 0);
-  const totalRevenue = initialVisits.reduce((sum, v) => sum + v.amount, 0);
+  const totalVisitors = initialVisits.reduce((sum, v) => sum + v.nombre_visiteurs, 0);
+  const totalRevenue = initialVisits.reduce((sum, v) => sum + v.montant_total, 0);
   const activeIncidents = initialIncidents.filter((i) => i.status !== "Résolu").length;
 
   return (

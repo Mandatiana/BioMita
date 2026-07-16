@@ -44,7 +44,7 @@ class VisiteModel extends Model
 
     public function getVisitesAvecDetails()
     {
-        return $this->select('visites.*, aires_protegees.nom as aire_nom, utilisateurs.nom as agent_nom')
+        return $this->select('visites.*, aires_protegees.nom as aire_nom')
                     ->join('aires_protegees', 'aires_protegees.id = visites.aire_id')
                     ->join('utilisateurs', 'utilisateurs.id = visites.agent_id')
                     ->findAll();
