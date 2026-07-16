@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@radix-ui/react-label";
 import { Input } from "@/components/ui/input";
 import Illustration from "../assets/fauneflore.svg";
+import { useNavigate } from "react-router-dom";
 
 
 // refa mse connecter dia mandray valeur iray amreo
@@ -22,7 +23,7 @@ export default function LoginScreen ({onLogin}: LoginProps){
 
   //<Role>: memoire qui ne peut contenir que agent ou responsable
   const[role, setRole] = useState<Role>("agent");
-
+  const navigate = useNavigate();
   const roles: {key: Role, label: string}[] = [
     {key: "agent", label:"agent de terrain"},
     {key: "responsable", label: "responsable"},
@@ -75,7 +76,7 @@ export default function LoginScreen ({onLogin}: LoginProps){
               <Label>Mot de passe</Label>
               <Input type="password" defaultValue="••••••••" />
             </div>
-            <Button className="w-full mt-2" size="lg" onClick={() => onLogin(role)}>
+            <Button className="w-full mt-2" size="lg" onClick={() =>{ onLogin(role); navigate('/adminLayout');}}>
               Se connecter <ChevronRight size={16} />
             </Button>
           </div>

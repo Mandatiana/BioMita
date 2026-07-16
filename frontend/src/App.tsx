@@ -1,6 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import './App.css'
-import AdminLayout from './pages/admin/AdminLayout'
+import HomePage from "./pages/Home";
+import LoginScreen from "./pages/auth";import AdminLayout from "./pages/admin/AdminLayout";
+'./pages/auth'
+
 function App() {
   // Fonction de connexion
   const handleLogin = () => {
@@ -9,8 +12,9 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/auth" element={<Auth onLogin={handleLogin} />} />
+      <Route path="/" element={<HomePage />} />
+      <Route path="/auth" element={<LoginScreen onLogin={handleLogin} />} />
+      <Route path="/adminLayout" element={<AdminLayout />} />
     </Routes>
   );
 }
