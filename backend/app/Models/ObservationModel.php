@@ -41,9 +41,11 @@ class ObservationModel extends Model
 
     public function getObservationsAvecDetails()
     {
-        return $this->select('observations.*, especes.nom as espece_nom, aires_protegees.nom as aire_nom')
+        return $this->select('observations.*, especes.nom as espece_nom, aires_protegees.nom as aire_nom, utilisateurs.nom as agent_nom')
                     ->join('especes', 'especes.id = observations.espece_id')
                     ->join('aires_protegees', 'aires_protegees.id = observations.aire_id')
+                    ->join('utilisateurs', 'utilisateurs.id = observations.agent_id')
+                    ->orderBy('date_observation', 'DESC')
                     ->findAll();
     }
 }

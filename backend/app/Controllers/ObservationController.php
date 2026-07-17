@@ -18,10 +18,7 @@ class ObservationController extends BaseController
     {
         $observations = $this->observationModel->getObservationsAvecDetails();
 
-        return $this->response->setJSON([
-            'status' => 'success',
-            'data'   => $observations,
-        ]);
+        return $this->response->setJSON($observations);
     }
 
     // GET /observations/(:num)

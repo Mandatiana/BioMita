@@ -25,18 +25,22 @@ export type Visite = {
   aire_nom: string;
   nombre_visiteurs: number,
   montant_total: number,
+  date_visite: string,
 }
 
-export type IncidentStatus = "Déclaré" | "En cours" | "Résolu";
-export type IncidentUrgence = "Faible" | "Moyen" | "Élevé";
+export type IncidentStatus = "signale" | "en_cours" | "resolu";
 
 export type Incident = {
-  id: number,
-  type: string,
-  loc: string,
-  desc: string,
-  urgence: IncidentUrgence,
-  status: IncidentStatus,
+  id: number;
+  type_incident: string;
+  localisation: string;
+  description: string;
+  statut: IncidentStatus;
+  aire_id: number;
+  aire_nom: string;
+  agent_id: number;
+  agent_nom: string;
+  date_incident: string;
 };
 
 export type AireProtegee = {
@@ -55,4 +59,26 @@ export type Agent = {
   total_visites: number;
   total_observations: number;
   total_incidents: number;
+};
+
+export type Espece = {
+  id: number;
+  nom: string;
+  nom_scientifique: string;
+  population: number;
+  image?: string;
+};
+
+export type Observation = {
+  id: number;
+  nombre_observe: number;
+  localisation: string;
+  commentaire: string;
+  espece_id: number;
+  espece_nom: string;
+  aire_id: number;
+  aire_nom: string;
+  agent_id: number;
+  agent_nom: string;
+  date_observation: string;
 };

@@ -16,12 +16,9 @@ class IncidentController extends BaseController
     // GET /incidents
     public function index()
     {
-        $incidents = $this->incidentModel->findAll();
+        $incidents = $this->incidentModel->getIncidentsAvecDetails();
 
-        return $this->response->setJSON([
-            'status' => 'success',
-            'data'   => $incidents,
-        ]);
+        return $this->response->setJSON($incidents);
     }
 
     // GET /incidents/(:num)

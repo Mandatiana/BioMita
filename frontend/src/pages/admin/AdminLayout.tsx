@@ -1,8 +1,9 @@
-import Dashboard from "../admin/Dashboard";
+import Dashboard from "./Dashboard";
 import Visitors from "./Visitors";
 import Incidents from "../Incidents";
+import Observations from "../Observations";
 import Agents from "../Agents";
-import Areas from "../admin/Area";
+import Areas from "./Area";
 import { useState } from "react";
 import {
   LayoutDashboard, Users, Search, AlertTriangle, User, MapPin,
@@ -15,6 +16,7 @@ type MenuKey =
     | "Dashboard"
     | "visitors"
     | "incidents"
+    | "observations"
     | "agents"
     |  "areas";
 
@@ -33,6 +35,7 @@ const navItems: NavItem[] = [
   { key: "Dashboard", label: "Tableau de bord", icon: LayoutDashboard },
   { key: "visitors", label: "Visiteurs", icon: Users },
   { key: "incidents", label: "Incidents", icon: AlertTriangle },
+  { key: "observations", label: "Observations", icon: Search },
   { key: "agents", label: "Agents", icon: User },
   { key: "areas", label: "Aires protégées", icon: MapPin },
 ];
@@ -54,6 +57,8 @@ export default function AdminLayout(){
                 return <Areas />
             case "incidents":
                 return <Incidents />
+            case "observations":
+                return <Observations />
         }
     }
 

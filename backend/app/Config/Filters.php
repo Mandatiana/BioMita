@@ -53,6 +53,7 @@ class Filters extends BaseFilters
         'before' => [
             'forcehttps', // Force Global Secure Requests
             'pagecache',  // Web Page Caching
+            'cors',       // Must run even when no route matches (e.g. OPTIONS preflight)
         ],
         'after' => [
             'pagecache',   // Web Page Caching
@@ -72,7 +73,6 @@ class Filters extends BaseFilters
      */
     public array $globals = [
         'before' => [
-            'cors',
             // 'honeypot',
             // 'csrf',
             // 'invalidchars',

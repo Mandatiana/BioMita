@@ -18,10 +18,7 @@ class EspeceController extends BaseController
     {
         $especes = $this->especeModel->findAll();
 
-        return $this->response->setJSON([
-            'status' => 'success',
-            'data'   => $especes,
-        ]);
+        return $this->response->setJSON($especes);
     }
 
     // GET /especes/(:num)

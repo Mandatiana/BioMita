@@ -46,4 +46,13 @@ class IncidentModel extends Model
                     ->orderBy('date_incident', 'DESC')
                     ->findAll();
     }
+
+    public function getIncidentsAvecDetails()
+    {
+        return $this->select('incidents.*, aires_protegees.nom as aire_nom, utilisateurs.nom as agent_nom')
+                    ->join('aires_protegees', 'aires_protegees.id = incidents.aire_id')
+                    ->join('utilisateurs', 'utilisateurs.id = incidents.agent_id')
+                    ->orderBy('date_incident', 'DESC')
+                    ->findAll();
+    }
 }
